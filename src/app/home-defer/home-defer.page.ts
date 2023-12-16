@@ -7,13 +7,13 @@ import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-home-defer',
+  templateUrl: 'home-defer.page.html',
+  styleUrls: ['home-defer.page.scss'],
   standalone: true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonAvatar, IonSkeletonText, IonAlert, IonLabel, IonBadge, IonInfiniteScroll, IonInfiniteScrollContent, DatePipe, RouterModule],
 })
-export class HomePage {
+export class HomeDeferPage {
 
   private movieService = inject(MovieService);
   private currentPage = 1;

@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Blank </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  @defer ( when !isLoading ) {
+    <ion-list>
+    
+      @for(movie of movies; track movie.id) {
+      <ion-item button [routerLink]="['/details', movie.id]">
+        <ion-avatar slot="start">
+          <img [src]="imageBaseUrl + '/w92' + movie.poster_path" alt="Poster" />
+        </ion-avatar>
+  
+        <ion-label class="ion-text-wrap">
+          <h3>{{ movie.title }}</h3>
+          <p>{{ movie.release_date | date:'y' }}</p>
+        </ion-label>
+  
+        <ion-badge slot="end"> {{ movie.vote_average }} </ion-badge>
+      </ion-item>
+      } @empty { @if (!isLoading) {
+      <ion-item lines="none">
+        <ion-label class="iont-text-center"> No Movies Found </ion-label>
+      </ion-item>
+      } }
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more movies..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  } @placeholder {
+    <ion-list>
+      @for(i of dummyArray; track i) {
+      <ion-item lines="none" class="ion-padding-bottom">
+        <ion-avatar slot="start">
+          <ion-skeleton-text> </ion-skeleton-text>
+        </ion-avatar>
+        <ion-skeleton-text animated style="height: 40px" />
+      </ion-item>
+      }
+    </ion-list>
+  } @error {
+    <ion-alert header="Error" [message]="error" isOpen="true" buttons="['OK']" />
+  } @loading(minimum 2s) {
+    I am transitioning
+  }
+
+</ion-content>
