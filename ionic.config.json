@@ -1,0 +1,7 @@
+{
+  "name": "moder-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
